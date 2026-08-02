@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://auth.wealthkernel.com/.well-known/openid-configuration
+hosts:
+- host: https://auth.wealthkernel.com
+  role: production authorization server (OpenID Connect / OAuth2)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: wealthkernel-openid-configuration.json
+  - path: /.well-known/openid-configuration/jwks
+    status: 200
+- host: https://auth.sandbox.wealthkernel.io
+  role: sandbox authorization server (OpenID Connect / OAuth2)
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: wealthkernel-sandbox-openid-configuration.json
+  - path: /.well-known/openid-configuration/jwks
+    status: 200
+- host: https://api.wealthkernel.io
+  role: production API base
+  documents:
+  - path: /.well-known/security.txt
+    status: 406
+  - path: /.well-known/api-catalog
+    status: 406
+- host: https://www.wealthkernel.com
+  role: marketing website
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes: >-
+  Production authorization server issues tokens at https://auth.wealthkernel.com/connect/token and
+  sandbox at https://auth.sandbox.wealthkernel.io/connect/token. Both advertise only the
+  client_credentials grant and the openid scope. No security.txt or api-catalog is published.

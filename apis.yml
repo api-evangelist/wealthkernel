@@ -1,7 +1,17 @@
 aid: wealthkernel
 name: WealthKernel
-description: WealthKernel is a company surfaced as a portfolio company of seedcamp and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  WealthKernel is a UK- and EU-regulated digital investing infrastructure provider that offers
+  "investing as a service" through a single REST API. It supplies the building blocks fintechs,
+  wealth managers and established businesses need to launch digital investing propositions:
+  client onboarding with KYC/AML, tax-wrapper accounts (GIA, ISA, JISA, SIPP), account funding
+  (BACS, CHAPS, open banking, direct debits), custody as a licensed UK custodian, fractional and
+  multi-currency trading, portfolio management and rebalancing, cash savings, transfers, valuations,
+  performance reporting and FCA transaction reporting. WealthKernel is authorised and regulated by
+  the Financial Conduct Authority (FRN 723719), registered with Spain's CNMV, and ISO 27001:2022
+  certified. The API is documented on Stoplight and secured with OAuth2 client-credentials via an
+  OpenID Connect authorization server, with sandbox and production environments, webhooks and
+  documented idempotency, pagination and eventual-consistency conventions.
 url: https://raw.githubusercontent.com/api-evangelist/wealthkernel/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +19,114 @@ x-backed-by:
 - seedcamp
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://cdn.prod.website-files.com/60dee70f5b4eb4b1921e29e2/69e72e3dbb1f3b0c28b179ca_WK_Logo_2026_Light.svg
 tags:
 - Company
-apis: []
+- Investing
+- Wealth Management
+- Brokerage
+- Custody
+- Fintech
+- Investment API
+- Embedded Finance
+- ISA
+- SIPP
+- Banking as a Service
+- United Kingdom
+- Europe
+apis:
+- name: WealthKernel API
+  description: >-
+    All-in-one REST API for digital investing: onboarding, accounts (GIA/ISA/JISA/SIPP), funding,
+    custody, trading, portfolio management, transfers, cash savings, valuations, performance and
+    reporting. OAuth2 client-credentials auth, date-based versioning, webhooks and idempotency.
+  humanURL: https://docs.wealthkernel.com/docs/api/getting-started
+  baseURL: https://api.wealthkernel.io
+  tags:
+  - Investing
+  - Brokerage
+  - Custody
+  - Portfolio Management
+  properties:
+  - type: Documentation
+    url: https://docs.wealthkernel.com/
+  - type: APIReference
+    url: https://docs.wealthkernel.com/docs/api/2021-05-17
+  - type: GettingStarted
+    url: https://docs.wealthkernel.com/docs/api/getting-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/wealthkernel-domain-security.yml
 - type: Website
-  url: http://wealthkernel.com
+  url: https://www.wealthkernel.com
+- type: DeveloperPortal
+  url: https://docs.wealthkernel.com/
+- type: Documentation
+  url: https://docs.wealthkernel.com/
+- type: APIReference
+  url: https://docs.wealthkernel.com/docs/api/2021-05-17
+- type: GettingStarted
+  url: https://docs.wealthkernel.com/docs/api/getting-started
+- type: Blog
+  url: https://www.wealthkernel.com/blog
+- type: GitHubOrganization
+  url: https://github.com/wealthkernel
+- type: SignUp
+  url: https://www.wealthkernel.com/enquiries
+- type: Support
+  url: https://www.wealthkernel.com/enquiries
+- type: PrivacyPolicy
+  url: https://www.wealthkernel.com/privacy-policy
+- type: TermsOfService
+  url: https://www.wealthkernel.com/policies
+- type: StatusPage
+  url: https://status.wealthkernel.com
+- type: Compliance
+  url: https://www.wealthkernel.com/regulatory
+- type: Authentication
+  url: authentication/wealthkernel-authentication.yml
+- type: Conventions
+  url: conventions/wealthkernel-conventions.yml
+- type: Idempotency
+  url: conventions/wealthkernel-conventions.yml
+- type: Lifecycle
+  url: lifecycle/wealthkernel-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/wealthkernel-webhooks.yml
+- type: Sandbox
+  url: sandbox/wealthkernel-sandbox.yml
+- type: Conformance
+  url: conformance/wealthkernel-conformance.yml
+- type: WellKnown
+  url: well-known/wealthkernel-well-known.yml
+- type: OpenIDConnect
+  url: well-known/wealthkernel-openid-configuration.json
+- type: DataModel
+  url: data-model/wealthkernel-data-model.yml
+- type: LLMsTxt
+  url: llms/wealthkernel-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

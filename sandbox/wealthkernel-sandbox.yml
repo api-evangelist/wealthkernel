@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wealthkernel.com/docs/guides/docs/sandbox/Sandbox-FAQ.md
+description: >-
+  WealthKernel provides a full sandbox environment that mirrors production behaviour, except that
+  processes which normally take time or require human intervention complete almost instantly.
+  Scenario simulation is driven by setting magic values (typically on the clientReference field of
+  a request) so integrators can deterministically reproduce delays, pending and rejection states.
+  Values below are published verbatim in the WealthKernel sandbox-simulation guides.
+environments:
+  sandbox:
+    api_base: https://api.sandbox.wealthkernel.io
+    auth_issuer: https://auth.sandbox.wealthkernel.io/
+    token_url: https://auth.sandbox.wealthkernel.io/connect/token
+  production:
+    api_base: https://api.wealthkernel.io
+    auth_issuer: https://auth.wealthkernel.com/
+    token_url: https://auth.wealthkernel.com/connect/token
+default_behaviour: >-
+  Sandbox behaves almost exactly like production; time-consuming or human-in-the-loop processes are
+  completed almost immediately unless a simulation trigger is supplied.
+simulation_triggers:
+- domain: accounts
+  field: clientReference
+  value: DELAY_ACCOUNT_ACTIVATION
+  effect: Delays account activation (move to Active) by roughly 30 seconds instead of near-instant.
+  docs: https://docs.wealthkernel.com/docs/guides/docs/accounts/Sandbox-Simulation.md
+- domain: bank-accounts
+  field: clientReference
+  value: PENDING_BANK_ACCOUNT
+  effect: Keeps the created bank account in a pending state to simulate verification delay.
+  docs: https://docs.wealthkernel.com/docs/guides/docs/bank-accounts/Sandbox-Simulation.md
+- domain: bank-accounts
+  field: clientReference
+  value: SUSPENDED_BANK_ACCOUNT
+  effect: Simulates a suspended bank account.
+  docs: https://docs.wealthkernel.com/docs/guides/docs/bank-accounts/Sandbox-Simulation.md
+- domain: inbound-transfers
+  field: clientReference
+  value: TRIGGER_PENDING
+  effect: Forces the inbound transfer into a pending state.
+  docs: https://docs.wealthkernel.com/docs/guides/docs/inbound-transfers/Sandbox-Simulation.md
+- domain: inbound-transfers
+  field: clientReference
+  value: TRIGGER_CANCELLATION_REJECTION
+  effect: Simulates a rejected cancellation of an inbound transfer.
+  docs: https://docs.wealthkernel.com/docs/guides/docs/inbound-transfers/Sandbox-Simulation.md
+webhooks_testing:
+  test_event: webhooks.test
+  docs: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Testing.md
+  notes: A test webhook event (webhooks.test) can be dispatched from the Dashboard to validate a subscription.
+notes: >-
+  Additional per-domain sandbox-simulation pages exist (deposits, withdrawals, outbound-transfers,
+  etc.); only the trigger values verified verbatim from the guides are recorded here. Never invent
+  sandbox trigger values.

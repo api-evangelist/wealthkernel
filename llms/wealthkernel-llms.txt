@@ -1,0 +1,47 @@
+# WealthKernel
+
+> WealthKernel is a UK- and EU-regulated digital investing infrastructure provider offering "investing as a service" through a single REST API. It supplies onboarding (KYC/AML), tax-wrapper accounts (GIA, ISA, JISA, SIPP), account funding (BACS, CHAPS, open banking, direct debits), custody as a licensed UK custodian, fractional and multi-currency trading, portfolio management and rebalancing, cash savings, transfers, valuations, performance and FCA transaction reporting. Authorised and regulated by the FCA (FRN 723719), registered with Spain's CNMV, and ISO 27001:2022 certified.
+
+## API
+- [WealthKernel API — Getting Started](https://docs.wealthkernel.com/docs/api/getting-started): entry point for the all-in-one investing API
+- [API Reference (2021-05-17)](https://docs.wealthkernel.com/docs/api/2021-05-17): dated, versioned REST reference
+- Production base URL: https://api.wealthkernel.io
+- Sandbox base URL: https://api.sandbox.wealthkernel.io
+
+## Authentication
+- OAuth2 client-credentials over OpenID Connect
+- Production token endpoint: https://auth.wealthkernel.com/connect/token
+- Sandbox token endpoint: https://auth.sandbox.wealthkernel.io/connect/token
+- [Managing secrets](https://docs.wealthkernel.com/docs/guides/docs/api-clients/Managing-Secrets.md)
+- [Authentication concepts](https://docs.wealthkernel.com/docs/api/docs/help/Authentication.md)
+
+## Conventions
+- [Idempotency](https://docs.wealthkernel.com/docs/api/docs/help/Idempotency.md)
+- [Pagination](https://docs.wealthkernel.com/docs/api/docs/help/Pagination.md)
+- [Eventual consistency](https://docs.wealthkernel.com/docs/api/docs/help/EventualConsistency.md)
+
+## Events
+- [Webhooks concepts](https://docs.wealthkernel.com/docs/api/docs/help/Webhooks.md): HMAC-SHA256 signed (Webhook-Signature), versioned event types
+- [Webhooks getting started](https://docs.wealthkernel.com/docs/guides/docs/webhooks/Getting-Started.md)
+
+## Docs
+- [Developer guides](https://docs.wealthkernel.com/): domains for accounts, portfolios, trading, deposits, withdrawals, transfers, balances, valuations, performance, ISA/SIPP, direct debits, cash savings and more
+- [Sandbox FAQ](https://docs.wealthkernel.com/docs/guides/docs/sandbox/Sandbox-FAQ.md)
+
+## Company
+- [Website](https://www.wealthkernel.com)
+- [Investing API](https://www.wealthkernel.com/platform/investing-api)
+- [Regulatory](https://www.wealthkernel.com/regulatory)
+- [Status](https://status.wealthkernel.com)
+- [GitHub](https://github.com/wealthkernel)
+- [Blog](https://www.wealthkernel.com/blog)
+
+## Artifacts (API Evangelist enrichment)
+- Authentication: authentication/wealthkernel-authentication.yml
+- Conventions: conventions/wealthkernel-conventions.yml
+- Webhooks: asyncapi/wealthkernel-webhooks.yml
+- Sandbox: sandbox/wealthkernel-sandbox.yml
+- Lifecycle: lifecycle/wealthkernel-lifecycle.yml
+- Conformance: conformance/wealthkernel-conformance.yml
+- Well-Known (OIDC): well-known/wealthkernel-well-known.yml
+- Data model: data-model/wealthkernel-data-model.yml

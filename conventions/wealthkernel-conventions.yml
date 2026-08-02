@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wealthkernel.com/docs/api/getting-started
+description: >-
+  Cross-cutting request/response semantics for the WealthKernel API, harvested from the published
+  developer guides. WealthKernel documents dedicated concept pages for authentication, idempotency,
+  pagination, eventual consistency and webhooks.
+authentication:
+  style: oauth2 client-credentials (Bearer JWT)
+  see: authentication/wealthkernel-authentication.yml
+versioning:
+  scheme: date-based
+  current: '2021-05-17'
+  notes: >-
+    The API reference is pinned to a dated version (2021-05-17). Clients target a specific dated
+    version of the contract; new dated versions are introduced without breaking pinned clients.
+  see: lifecycle/wealthkernel-lifecycle.yml
+idempotency:
+  supported: true
+  docs: https://docs.wealthkernel.com/docs/api/docs/help/Idempotency.md
+  notes: >-
+    WealthKernel publishes a dedicated Idempotency concept page. Idempotency keys let clients safely
+    retry create/write requests without duplicating side effects (e.g. duplicate orders or deposits),
+    which pairs with the platform's eventual-consistency model. The exact idempotency header name is
+    documented on the reference help page linked above (not restated here to avoid asserting an
+    unverified string).
+eventual_consistency:
+  supported: true
+  docs: https://docs.wealthkernel.com/docs/api/docs/help/EventualConsistency.md
+  notes: >-
+    Writes are accepted and processed asynchronously; a resource created via POST may not be
+    immediately readable and moves through states (e.g. accounts transition to Active). Poll or
+    subscribe to webhooks rather than assuming read-after-write consistency.
+pagination:
+  documented: true
+  docs: https://docs.wealthkernel.com/docs/api/docs/help/Pagination.md
+  notes: WealthKernel publishes a dedicated Pagination concept page for list endpoints.
+webhooks:
+  supported: true
+  see: asyncapi/wealthkernel-webhooks.yml
+  signature_header: Webhook-Signature
+  signature_scheme: HMAC-SHA256 (v1= scheme, timestamp t=, base64-decoded secret)
+error_model:
+  observed:
+  - status: 406
+    note: >-
+      API resource hosts (api.wealthkernel.io, api.sandbox.wealthkernel.io) return 406 Not Acceptable
+      when the required Accept / version negotiation header is absent (observed on probe).
+  docs: https://docs.wealthkernel.com/docs/api/2021-05-17
+rate_limit_signaling:
+  documented: null
+  notes: Not documented on the public developer guides at time of enrichment.
+cross_links:
+  authentication: authentication/wealthkernel-authentication.yml
+  lifecycle: lifecycle/wealthkernel-lifecycle.yml
+  webhooks: asyncapi/wealthkernel-webhooks.yml
+  sandbox: sandbox/wealthkernel-sandbox.yml

@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Getting-Started.md
+spec_type: Webhooks
+description: >-
+  WealthKernel delivers asynchronous notifications via webhooks. Integrators subscribe (in the
+  Dashboard) to a chosen subset of event types and receive signed HTTP POST callbacks. No AsyncAPI
+  document is published; this artifact captures the documented webhook surface.
+subscription:
+  managed_in: WealthKernel Dashboard (Webhooks -> Create Subscription)
+  opt_in: true
+  notes: Subscribe only to the event types you need; selection is managed per subscription.
+event_model:
+  envelope_fields:
+  - eventId
+  - eventType
+  event_type:
+    shape: '{ "name": "<namespace>.<localName>", "version": <integer> }'
+    naming: namespace name and local name separated by a full stop (e.g. webhooks.test)
+    versioned: true
+    notes: >-
+      Each eventType carries an integer version so WealthKernel can evolve an event without breaking
+      integrations; a consumer may be subscribed to two versions of the same event and can use eventId
+      to detect duplicates.
+  known_event_types:
+  - name: webhooks.test
+    version: 1
+    description: Test event that can be dispatched from the Dashboard to validate a subscription.
+  note: >-
+    Only webhooks.test is quoted verbatim from the guides; the full production event-type catalog is
+    selected per subscription in the Dashboard and is not enumerated on the public guides.
+security:
+  signature_header: Webhook-Signature
+  algorithm: HMAC-SHA256
+  scheme: >-
+    Header contains a timestamp (t=) and one HMAC per active secret, each prefixed by its scheme
+    (currently v1=). Secrets are base64 and must be decoded before use as the HMAC key; the signed
+    message is the concatenation defined in the docs.
+  verification:
+  - Split the header on commas into key=value components (t=, v1=).
+  - Compute HMAC-SHA256 using the base64-decoded secret as key over the concatenated payload (UTF-8).
+  - Hex-encode and constant-time compare against the provided HMAC(s).
+  - Reject if the timestamp is outside tolerance (replay protection).
+  multiple_secrets: true
+  docs: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Secrets.md
+docs:
+  concepts: https://docs.wealthkernel.com/docs/api/docs/help/Webhooks.md
+  getting_started: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Getting-Started.md
+  event_types: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Event-Types.md
+  testing: https://docs.wealthkernel.com/docs/guides/docs/webhooks/Testing.md
+  faqs: https://docs.wealthkernel.com/docs/guides/docs/webhooks/FAQs.md

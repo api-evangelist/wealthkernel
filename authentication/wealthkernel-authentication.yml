@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://auth.wealthkernel.com/.well-known/openid-configuration
+docs: https://docs.wealthkernel.com/docs/api/getting-started
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [clientCredentials]
+  api_key_in: []
+  token_endpoint_auth: [client_secret_post, private_key_jwt, client_secret_basic]
+description: >-
+  WealthKernel secures its API with OAuth2 client-credentials against an OpenID Connect authorization
+  server (Duende/IdentityServer-style "/connect/token" endpoint). API clients and secrets are created
+  and managed by Dashboard admin users under Configuration -> API clients. The client_id (client key)
+  and client_secret are exchanged at the token endpoint for a short-lived access token, which is then
+  sent as a Bearer token on each API request. Sandbox and production use separate authorization servers.
+schemes:
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  environments:
+  - env: production
+    issuer: https://auth.wealthkernel.com/
+    token_url: https://auth.wealthkernel.com/connect/token
+    jwks_uri: https://auth.wealthkernel.com/.well-known/openid-configuration/jwks
+    api_base: https://api.wealthkernel.io
+  - env: sandbox
+    issuer: https://auth.sandbox.wealthkernel.io/
+    token_url: https://auth.sandbox.wealthkernel.io/connect/token
+    jwks_uri: https://auth.sandbox.wealthkernel.io/.well-known/openid-configuration/jwks
+    api_base: https://api.sandbox.wealthkernel.io
+  grant_types_supported: [client_credentials]
+  scopes_supported: [openid]
+  token_endpoint_auth_methods_supported: [client_secret_post, private_key_jwt, client_secret_basic]
+  sources: [well-known/wealthkernel-openid-configuration.json]
+access_token:
+  transport: Authorization Bearer header
+  type: JWT (signed by the authorization server; verifiable via jwks_uri)
+credential_management:
+  where: WealthKernel Dashboard -> Configuration -> API clients
+  docs: https://docs.wealthkernel.com/docs/guides/docs/api-clients/Managing-Secrets.md
+  notes: Admin users generate and rotate client secrets; secrets are shown once and must be stored securely.
+ip_allow_listing:
+  supported: true
+  docs: https://docs.wealthkernel.com/docs/guides/docs/ip-allow-listing/Basics.md

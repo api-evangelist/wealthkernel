@@ -1,0 +1,94 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.wealthkernel.com/ (developer guide domains)
+description: >-
+  Entity map derived from WealthKernel's documented API domains (guide sections). No OpenAPI was
+  retrievable from the Stoplight-hosted reference at enrichment time, so relationships are inferred
+  from the domain structure of the guides rather than from spec $ref links; treat cardinalities as
+  documented-domain inferences, not spec-verified.
+entities:
+- name: Party
+  aka: client / due-diligence subject
+  domain: due-diligence
+  notes: The onboarded individual/entity; carries KYC/AML due-diligence.
+- name: Account
+  domain: accounts
+  types: [GIA, ISA, JISA, SIPP]
+  notes: UK tax-wrapper account opened for a Party; moves through states (e.g. Active).
+- name: Portfolio
+  domain: portfolios
+- name: Order
+  domain: trading
+  notes: Buy/sell instruction, supports fractional and multi-currency.
+- name: Position
+  domain: valuations/portfolios
+- name: BankAccount
+  domain: bank-accounts
+- name: Deposit
+  domain: deposits
+- name: Withdrawal
+  domain: withdrawals
+- name: DirectDebit
+  domain: direct-debits
+- name: Transfer
+  domain: inbound-transfers / outbound-transfers
+  notes: In-specie and cash transfers, including ISA/JISA transfers.
+- name: Transaction
+  domain: transactions
+- name: Balance
+  domain: balances
+- name: Valuation
+  domain: valuations
+- name: CashSavings
+  domain: cash-savings
+- name: IsaDeclaration
+  domain: isa-declarations
+- name: IsaSubscription
+  domain: isa-subscriptions
+- name: SippContribution
+  domain: sipp-contributions
+- name: PensionIncome
+  domain: pension-income
+- name: Performance
+  domain: performance
+relationships:
+- from: Account
+  to: Party
+  kind: belongs_to
+  via: party
+- from: Portfolio
+  to: Account
+  kind: belongs_to
+  via: account
+- from: Order
+  to: Portfolio
+  kind: belongs_to
+  via: portfolio
+- from: Position
+  to: Portfolio
+  kind: belongs_to
+  via: portfolio
+- from: BankAccount
+  to: Party
+  kind: belongs_to
+  via: party
+- from: Deposit
+  to: Account
+  kind: belongs_to
+  via: account
+- from: Withdrawal
+  to: Account
+  kind: belongs_to
+  via: account
+- from: Transfer
+  to: Account
+  kind: belongs_to
+  via: account
+- from: Valuation
+  to: Portfolio
+  kind: belongs_to
+  via: portfolio
+- from: IsaSubscription
+  to: Account
+  kind: belongs_to
+  via: account

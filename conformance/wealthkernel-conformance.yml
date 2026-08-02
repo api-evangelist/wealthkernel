@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.wealthkernel.com/regulatory
+description: >-
+  Standards and regulatory posture WealthKernel conforms to, evidenced by the OpenID Connect
+  discovery documents, the published webhook security scheme, and WealthKernel's regulatory pages.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Authorization servers advertise the client_credentials grant at /connect/token
+    (well-known/wealthkernel-openid-configuration.json).
+- id: oidc-discovery
+  conforms: true
+  evidence: >-
+    Both prod and sandbox publish RFC 8414 / OpenID Connect discovery documents at
+    /.well-known/openid-configuration with a jwks_uri.
+- id: webhook-hmac-signing
+  conforms: true
+  evidence: >-
+    Webhook-Signature header uses HMAC-SHA256 with timestamped, versioned schemes and replay
+    protection (asyncapi/wealthkernel-webhooks.yml).
+- id: rfc9457-problem-details
+  conforms: null
+  evidence: Error envelope format not confirmed from public guides.
+compliance_program:
+  fca_authorised:
+    claim: Authorised and regulated by the Financial Conduct Authority
+    reference: FRN 723719
+    source: https://www.wealthkernel.com/platform/investing-api
+  cnmv_registered:
+    claim: Registered with Spain's Comision Nacional del Mercado de Valores (CNMV)
+    source: https://www.wealthkernel.com/regulatory
+  iso_27001:
+    claim: ISO/IEC 27001:2022 certified (information security management)
+    source: https://www.wealthkernel.com/platform/investing-api
+  fscs:
+    claim: FSCS protection up to GBP 120,000 for eligible clients
+    source: https://www.wealthkernel.com/platform/investing-api
+  dual_regulated: UK (FCA) and EU (CNMV)

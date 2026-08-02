@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.wealthkernel.com/docs/api/2021-05-17
+versioning:
+  scheme: date-based
+  current: '2021-05-17'
+  docs: https://docs.wealthkernel.com/docs/api/2021-05-17
+  notes: >-
+    The API reference is pinned to a dated version. New dated versions are introduced so pinned
+    clients are not broken; webhook eventTypes are independently versioned (name + integer version).
+status_page: https://status.wealthkernel.com
+status_page_history: https://status.wealthkernel.com
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: >-
+    No standalone deprecation/sunset-header policy page was found on the public developer guides.
+    Backwards compatibility is managed via dated API versions and versioned webhook eventTypes.
+sla:
+  url: null
+  notes: SLA/uptime targets are commercial and not published on the public developer surface.
+environments:
+- env: production
+  api_base: https://api.wealthkernel.io
+  auth: https://auth.wealthkernel.com
+- env: sandbox
+  api_base: https://api.sandbox.wealthkernel.io
+  auth: https://auth.sandbox.wealthkernel.io

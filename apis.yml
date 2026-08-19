@@ -31,7 +31,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-21'
 image: https://cdn.prod.website-files.com/60dee70f5b4eb4b1921e29e2/69e72e3dbb1f3b0c28b179ca_WK_Logo_2026_Light.svg

@@ -61,6 +61,11 @@ apis:
   - Investing
   - Brokerage
   - Custody
+  - Portfolio-Management
+  tags_raw:
+  - Investing
+  - Brokerage
+  - Custody
   - Portfolio Management
   properties:
   - type: Documentation

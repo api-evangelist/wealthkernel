@@ -72,12 +72,13 @@ apis:
   - Investing
   - Brokerage
   - Custody
-  - Portfolio-Management
+  - Portfolio Management
   tags_raw:
   - Investing
   - Brokerage
   - Custody
   - Portfolio Management
+  - Portfolio-Management
   properties:
   - type: Documentation
     url: https://docs.wealthkernel.com/
